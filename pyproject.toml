@@ -38,7 +38,7 @@ tracker = "https://github.com/janthmueller/navi/issues"
 exclude = ["tests"]
 
 [project.scripts]
-totify = "navi:main"
+navi = "navi:main"
 
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
