@@ -1,7 +1,7 @@
 import curses
+import json
 import os
 import subprocess
-import json
 from pathlib import Path
 
 try:
@@ -17,6 +17,7 @@ except PackageNotFoundError:
     except Exception:
         __version__ = "0.0.0-dev"
 
+
 class Launcher:
     def __init__(self, stdscr):
         self.stdscr = stdscr
@@ -24,9 +25,8 @@ class Launcher:
         self.apps = self._get_apps()
         self.filtered_apps = self.apps
         self.selection_index = 0
-        self.usage_path =  Path.home() / ".config/launchy/usage.json"
+        self.usage_path = Path.home() / ".config/launchy/usage.json"
         self.usage_data = self._load_usage()
-
 
     def _get_apps(self):
         apps = []
@@ -34,7 +34,6 @@ class Launcher:
 
         xdg_data_dirs = os.environ.get("XDG_DATA_DIRS").split(":")
         app_dirs = [os.path.join(d, "applications") for d in xdg_data_dirs if d]
-
 
         for app_dir in app_dirs:
             if not os.path.isdir(app_dir):
@@ -67,11 +66,17 @@ class Launcher:
                                     elif key == "NoDisplay":
                                         nodisplay = value.lower() == "true"
                             # Add app only if valid and not duplicate
-                            if not nodisplay and "name" in app_info and "exec" in app_info and app_info["name"] not in app_names:
+                            if (
+                                not nodisplay
+                                and "name" in app_info
+                                and "exec" in app_info
+                                and app_info["name"] not in app_names
+                            ):
                                 apps.append(app_info)
                                 app_names.add(app_info["name"])
 
         return apps
+
     def _load_usage(self):
         if self.usage_path.exists():
             with open(self.usage_path, "r") as f:
@@ -96,7 +101,7 @@ class Launcher:
             if query[query_index].lower() == text[text_index].lower():
                 score += 1
                 if match_indices and match_indices[-1] == text_index - 1:
-                    score += 1 # Bonus for consecutive matches
+                    score += 1  # Bonus for consecutive matches
                 match_indices.append(text_index)
                 query_index += 1
             text_index += 1
@@ -114,17 +119,19 @@ class Launcher:
         curses.init_pair(2, curses.COLOR_BLUE, -1)
         curses.init_pair(3, curses.COLOR_CYAN, -1)
 
-
         while True:
             self.draw()
             self.handle_input()
 
     def _get_apps_sorted_by_usage(self):
         return sorted(
-            self.apps, 
-            key=lambda app: self.usage_data.get(app["name"], 0),  # default 0 if not in usage_data
-            reverse=True
+            self.apps,
+            key=lambda app: self.usage_data.get(
+                app["name"], 0
+            ),  # default 0 if not in usage_data
+            reverse=True,
         )
+
     def draw(self):
         self.stdscr.clear()
         self.stdscr.addstr(0, 0, f"> {self.user_input}", curses.color_pair(1))
@@ -141,7 +148,7 @@ class Launcher:
             self.filtered_apps = self._get_apps_sorted_by_usage()
 
         for i, app in enumerate(self.filtered_apps):
-            is_selected = (i == self.selection_index)
+            is_selected = i == self.selection_index
             color = curses.color_pair(2) if is_selected else curses.color_pair(1)
             self.stdscr.addstr(i + 1, 0, "", color)
             score, indices = self.fuzzy_match(self.user_input, app["name"])
@@ -159,25 +166,34 @@ class Launcher:
         except curses.error:
             return
 
-        key = curses.keyname(ch).decode('utf-8')
+        key = curses.keyname(ch).decode("utf-8")
 
-        if key == '^[' or key == '^Q': # Add a quit key
+        if key == "^[" or key == "^Q":  # Add a quit key
             exit()
-        elif ch == curses.KEY_BACKSPACE or key == '^H':
+        elif ch == curses.KEY_BACKSPACE or key == "^H":
             self.user_input = self.user_input[:-1]
             self.selection_index = 0
-        elif key == '^J':
+        elif key == "^J":
             if self.filtered_apps:
                 selected_app = self.filtered_apps[self.selection_index]
                 self._increment_usage(selected_app["name"])
                 command = selected_app["exec"].split(" ")[0]
-                subprocess.Popen(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                subprocess.Popen(
+                    command,
+                    shell=True,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    start_new_session=True,
+                    close_fds=True
+                )
                 exit()
-        elif ch == curses.KEY_UP or key == '^P':
+        elif ch == curses.KEY_UP or key == "^P":
             self.selection_index = max(0, self.selection_index - 1)
-        elif ch == curses.KEY_DOWN or key == '^N':
+        elif ch == curses.KEY_DOWN or key == "^N":
             if self.filtered_apps:
-                self.selection_index = min(len(self.filtered_apps) - 1, self.selection_index + 1)
+                self.selection_index = min(
+                    len(self.filtered_apps) - 1, self.selection_index + 1
+                )
         elif len(key) == 1 and key.isprintable():
             self.user_input += key
             self.selection_index = 0
@@ -187,8 +203,10 @@ def _main(stdscr):
     launcher = Launcher(stdscr)
     launcher.run()
 
+
 def main():
     curses.wrapper(_main)
+
 
 if __name__ == "__main__":
     main()
