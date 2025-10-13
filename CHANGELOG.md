@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.3 (2025-10-13)
+
+### Bug Fixes
+
+- Detach from session; also format
+  ([`386c4cd`](https://github.com/janthmueller/navi/commit/386c4cdf01fca6136b2a4757df568a0c8e7783e5))
+
+
 ## v1.0.2 (2025-10-13)
 
 ### Bug Fixes
