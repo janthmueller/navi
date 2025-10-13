@@ -183,9 +183,12 @@ class Launcher:
             self.selection_index = 0
 
 
-def main(stdscr):
+def _main(stdscr):
     launcher = Launcher(stdscr)
     launcher.run()
 
+def main():
+    curses.wrapper(_main)
+
 if __name__ == "__main__":
-    curses.wrapper(main)
+    main()
