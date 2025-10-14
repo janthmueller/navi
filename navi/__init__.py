@@ -205,7 +205,10 @@ def _main(stdscr):
 
 
 def main():
-    curses.wrapper(_main)
+    try:
+        curses.wrapper(_main)
+    except KeyboardInterrupt: 
+        exit()
 
 
 if __name__ == "__main__":
