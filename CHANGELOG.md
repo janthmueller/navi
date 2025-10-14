@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.5 (2025-10-14)
+
+### Bug Fixes
+
+- Use terminal default colors
+  ([`0c44a18`](https://github.com/janthmueller/navi/commit/0c44a187238118aeb124b44f7871312220b45a39))
+
+
 ## v1.0.4 (2025-10-14)
 
 ### Bug Fixes
