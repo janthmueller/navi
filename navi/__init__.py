@@ -32,7 +32,7 @@ class Launcher:
         apps = []
         app_names = set()
 
-        xdg_data_dirs = os.environ.get("XDG_DATA_DIRS").split(":")
+        xdg_data_dirs = os.environ["XDG_DATA_DIRS"].split(":")
         app_dirs = [os.path.join(d, "applications") for d in xdg_data_dirs if d]
 
         for app_dir in app_dirs:
@@ -115,9 +115,9 @@ class Launcher:
         curses.curs_set(1)
         curses.start_color()
         curses.use_default_colors()
-        curses.init_pair(1, curses.COLOR_WHITE, -1)
-        curses.init_pair(2, curses.COLOR_BLUE, -1)
-        curses.init_pair(3, curses.COLOR_CYAN, -1)
+        curses.init_pair(1, 7, -1) # white on cattpuccin
+        curses.init_pair(2, 4, -1) # pastel blue ..
+        curses.init_pair(3, 6, -1) # teal / greenish-blue ..
 
         while True:
             self.draw()
