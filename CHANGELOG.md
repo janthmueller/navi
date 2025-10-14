@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.0.4 (2025-10-14)
+
+### Bug Fixes
+
+- Exit on keyboard interrupt
+  ([`33d73b5`](https://github.com/janthmueller/navi/commit/33d73b587145128afc7ffdeb1ec33e45fed86796))
+
+### Chores
+
+- Add readme
+  ([`f38880d`](https://github.com/janthmueller/navi/commit/f38880df1527671e6c57a457478cf381ac437d5d))
+
+
 ## v1.0.3 (2025-10-13)
 
 ### Bug Fixes
