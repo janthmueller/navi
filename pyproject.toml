@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "navi"
-version = "1.0.5"
+version = "1.0.6"
 readme = "README.md"
 
 description = "App Launcher and Navigator TUI for Hyprland"

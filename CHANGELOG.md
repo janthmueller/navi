@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.6 (2025-10-15)
+
+### Bug Fixes
+
+- Reduce ESC key delay to improve responsiveness
+  ([`c6123b8`](https://github.com/janthmueller/navi/commit/c6123b8ad31f14a6c231ddce353e95d42fcfe784))
+
+
 ## v1.0.5 (2025-10-14)
 
 ### Bug Fixes
