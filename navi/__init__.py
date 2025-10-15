@@ -115,6 +115,7 @@ class Launcher:
         curses.curs_set(1)
         curses.start_color()
         curses.use_default_colors()
+        curses.set_escdelay(25)
         curses.init_pair(1, 7, -1) # white on cattpuccin
         curses.init_pair(2, 4, -1) # pastel blue ..
         curses.init_pair(3, 6, -1) # teal / greenish-blue ..
@@ -168,7 +169,7 @@ class Launcher:
 
         key = curses.keyname(ch).decode("utf-8")
 
-        if key == "^[" or key == "^Q":  # Add a quit key
+        if key == "^[":
             exit()
         elif ch == curses.KEY_BACKSPACE or key == "^H":
             self.user_input = self.user_input[:-1]
