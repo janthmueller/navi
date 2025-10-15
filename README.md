@@ -1,6 +1,6 @@
 # Navi
 
-TUI app navigator and launcher for Hyprland - my terminal is already configured.
+TUI app navigator and launcher for Hyprland - since my terminal is already configured.
 
 ## Install 
 ### pipx
