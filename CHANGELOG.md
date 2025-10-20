@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.8 (2025-10-20)
+
+### Bug Fixes
+
+- N_rows should be rest_n_rows
+  ([`8723117`](https://github.com/janthmueller/navi/commit/8723117f1b5de9f726805c924fdac1d31ac6be80))
+
+
 ## v1.0.7 (2025-10-20)
 
 ### Bug Fixes
