@@ -135,9 +135,9 @@ class Launcher:
 
     def draw(self):
         self.stdscr.clear()
-        n_rows, n_cols = self.stdscr.getmaxyx()
+        rest_n_rows, n_cols = self.stdscr.getmaxyx()
         self.stdscr.addstr(0, 0, f"> {self.user_input}", curses.color_pair(1))
-
+        rest_n_rows -= 1
 
         if self.user_input:
             self.filtered_apps = []
@@ -150,7 +150,7 @@ class Launcher:
         else:
             self.filtered_apps = self._get_apps_sorted_by_usage()
 
-        for i, app in enumerate(self.filtered_apps[:n_rows]):
+        for i, app in enumerate(self.filtered_apps[:rest_n_rows]):
             is_selected = i == self.selection_index
             color = curses.color_pair(2) if is_selected else curses.color_pair(1)
             self.stdscr.addstr(i + 1, 0, "", color)
