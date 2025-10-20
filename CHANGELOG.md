@@ -2,6 +2,22 @@
 
 <!-- version list -->
 
+## v1.0.7 (2025-10-20)
+
+### Bug Fixes
+
+- Don't render rows which exceed terminal height
+  ([`0a39549`](https://github.com/janthmueller/navi/commit/0a395492167922dc5c7b3a547913ffe4fa14a97f))
+
+### Chores
+
+- Update readme
+  ([`9ea3bae`](https://github.com/janthmueller/navi/commit/9ea3baef8ffb7b5525a49947a9e0a336eb70b29e))
+
+- Update readme
+  ([`53e36dd`](https://github.com/janthmueller/navi/commit/53e36dd0d7f5ed52b14d48b0be84ddc274395f34))
+
+
 ## v1.0.6 (2025-10-15)
 
 ### Bug Fixes
