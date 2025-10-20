@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.9 (2025-10-20)
+
+### Bug Fixes
+
+- Min selection index should also depend on available rows in term
+  ([`f2c2097`](https://github.com/janthmueller/navi/commit/f2c20971a0faa80534e3d9381409cf369ae59272))
+
+
 ## v1.0.8 (2025-10-20)
 
 ### Bug Fixes
